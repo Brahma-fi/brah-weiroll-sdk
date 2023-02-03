@@ -1,5 +1,6 @@
 import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
+import {IMultipleContracts} from "../types";
 import {getContractData} from "../utils";
 
 export const getWeirollContract = (
@@ -24,10 +25,7 @@ export const getWeirollContractByName = (
 };
 
 export const getMultipleWeirollContractsByName = (
-  params: Array<{
-    name: string;
-    isDelegateCalled?: boolean;
-  }>,
+  params: Array<IMultipleContracts>,
 ): weiroll.Contract[] => {
   return params.map(({name, isDelegateCalled}) =>
     getWeirollContractByName(name, isDelegateCalled),
