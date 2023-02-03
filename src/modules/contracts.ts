@@ -2,6 +2,7 @@ import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
 import {IMultipleContracts} from "../types";
 import {getContractData} from "../utils";
+import {validateSetup} from "../utils/validator";
 
 export const getWeirollContract = (
   address: string,
@@ -19,6 +20,7 @@ export const getWeirollContractByName = (
   name: string,
   isDelegateCalled: boolean = false,
 ): weiroll.Contract => {
+  validateSetup();
   const {address, abi} = getContractData(name);
 
   return getWeirollContract(address, abi, isDelegateCalled);

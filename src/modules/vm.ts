@@ -2,6 +2,7 @@ import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
 import {IMultipleContracts} from "../types";
 import {Config} from "../utils";
+import {validateSetup} from "../utils/validator";
 import {
   getMultipleWeirollContractsByName,
   getWeirollContract,
@@ -14,6 +15,7 @@ export class BrahVM {
   planner: weiroll.Planner;
 
   constructor() {
+    validateSetup();
     this.planner = new weiroll.Planner();
   }
 
