@@ -2,12 +2,19 @@ import {readFileSync} from "fs";
 import {ConfigFile, ContractsConfig} from "../types/config";
 import Config from "./config";
 
-export const validateSetup = () => {
-  const contractsConfig = validateConfigFile();
-  validateContractsConfig(contractsConfig);
+type ValidateReturn = {
+  contractsConfig: ContractsConfig;
+  abiKey?: string;
 };
 
-const validateConfigFile = (): ContractsConfig => {
+export const validateSetup = (): ValidateReturn => {
+  const {contractsConfig, abiKey} = validateConfigFile();
+  validateContractsConfig(contractsConfig);
+
+  return {contractsConfig, abiKey};
+};
+
+const validateConfigFile = (): ValidateReturn => {
   const config: ConfigFile = JSON.parse(
     readFileSync(Config.configPath, "utf-8"),
   );
@@ -21,7 +28,10 @@ const validateConfigFile = (): ContractsConfig => {
   else if (typeof config.contracts !== "string")
     throw new Error("[Incorrect config] contracts path must be a string");
 
-  return JSON.parse(readFileSync(config.contracts, "utf-8"));
+  return {
+    contractsConfig: JSON.parse(readFileSync(config.contracts, "utf-8")),
+    abiKey: config.abiKey,
+  };
 };
 
 const validateContractsConfig = (contractsConfig: ContractsConfig) => {
