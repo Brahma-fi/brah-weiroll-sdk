@@ -1,6 +1,9 @@
 {
   "name": "brah-weiroll-sdk-sample",
   "version": "1.0.0",
+  "scripts": {
+    "start": "npx ts-node index.ts"
+  },
   "devDependencies": {
     "@types/chai": "file:../node_modules/@types/chai",
     "@types/jest": "file:../node_modules/@types/jest",

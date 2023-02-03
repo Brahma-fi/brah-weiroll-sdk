@@ -91,7 +91,10 @@ export class BrahVM {
     return getWeirollContract(address, abi);
   }
 
-  contractByName(name: string, isDelegateCalled: boolean): weiroll.Contract {
+  contractByName(
+    name: string,
+    isDelegateCalled: boolean = false,
+  ): weiroll.Contract {
     return getWeirollContractByName(name, isDelegateCalled);
   }
 

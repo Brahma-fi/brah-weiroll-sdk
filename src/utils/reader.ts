@@ -18,7 +18,7 @@ export const getContractData = (
 
   return {
     address: contract.address,
-    abi: !!abiKey
+    abi: !abiKey
       ? JSON.parse(readFileSync(contract.abi, "utf-8"))
       : JSON.parse(readFileSync(contract.abi, "utf-8"))[abiKey!],
   };
