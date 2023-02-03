@@ -2,11 +2,11 @@ import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
 import {getContractData} from "../utils";
 
-export const getWeirollContractByName = (
-  name: string,
+export const getWeirollContract = (
+  address: string,
+  abi: any,
   isDelegateCalled: boolean = false,
-) => {
-  const {address, abi} = getContractData(name);
+): weiroll.Contract => {
   const contract = new ethers.Contract(address, abi);
 
   if (isDelegateCalled) return weiroll.Contract.createLibrary(contract);
@@ -14,12 +14,21 @@ export const getWeirollContractByName = (
   return weiroll.Contract.createContract(contract);
 };
 
+export const getWeirollContractByName = (
+  name: string,
+  isDelegateCalled: boolean = false,
+): weiroll.Contract => {
+  const {address, abi} = getContractData(name);
+
+  return getWeirollContract(address, abi, isDelegateCalled);
+};
+
 export const getMultipleWeirollContractsByName = (
   params: Array<{
     name: string;
-    isDelegateCalled: boolean;
+    isDelegateCalled?: boolean;
   }>,
-) => {
+): weiroll.Contract[] => {
   return params.map(({name, isDelegateCalled}) =>
     getWeirollContractByName(name, isDelegateCalled),
   );
