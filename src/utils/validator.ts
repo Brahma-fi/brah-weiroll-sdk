@@ -25,7 +25,16 @@ const validateConfigFile = (): ContractsConfig => {
 };
 
 const validateContractsConfig = (contractsConfig: ContractsConfig) => {
-  Object.keys(contractsConfig).forEach((it) => {
+  const configKeys = Object.keys(contractsConfig);
+
+  Object.values(Config.commons).forEach((commonContract) => {
+    if (configKeys.includes(commonContract))
+      throw new Error(
+        `[Incorrect config] Common helper: ${commonContract} not found`,
+      );
+  });
+
+  configKeys.forEach((it) => {
     if (typeof it !== "string")
       throw new Error(
         "[Incorrect config] All contract config keys must be strings",
