@@ -1,0 +1,22 @@
+{
+  "Assert": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Assert.json"
+  },
+  "Coersion": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Coersion.json"
+  },
+  "Comparison": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Comparison.json"
+  },
+  "Ethereum": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Ethereum.json"
+  },
+  "Math": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Math.json"
+  }
+}

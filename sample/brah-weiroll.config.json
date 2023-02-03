@@ -1,0 +1,4 @@
+{
+  "abiKey": "abi",
+  "contracts": "./config/contracts.json"
+}

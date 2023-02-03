@@ -38,7 +38,7 @@ const validateContractsConfig = (contractsConfig: ContractsConfig) => {
   const configKeys = Object.keys(contractsConfig);
 
   Object.values(Config.commons).forEach((commonContract) => {
-    if (configKeys.includes(commonContract))
+    if (!configKeys.includes(commonContract))
       throw new Error(
         `[Incorrect config] Common helper: ${commonContract} not found`,
       );
