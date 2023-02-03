@@ -9,5 +9,6 @@ export default {
     coersion: "Coersion",
     comparison: "Comparison",
     math: "Math",
+    ethereum: "Ethereum",
   },
 };

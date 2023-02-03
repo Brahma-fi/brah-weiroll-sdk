@@ -65,6 +65,26 @@ export class BrahVM {
     );
   }
 
+  balance(address: any): PlannerAdd {
+    return this.planner.add(
+      getWeirollContractByName(Config.commons.ethereum).balance(address),
+    );
+  }
+
+  timestamp(): PlannerAdd {
+    return this.planner.add(
+      getWeirollContractByName(Config.commons.ethereum).timestamp(),
+    );
+  }
+
+  transfer(address: any, amount: any): PlannerAdd {
+    return this.planner.add(
+      getWeirollContractByName(Config.commons.ethereum)[
+        "transfer(address,uint256)"
+      ](address, amount),
+    );
+  }
+
   contractByAddress(address: any, abi: any): weiroll.Contract {
     return getWeirollContract(address, abi);
   }
