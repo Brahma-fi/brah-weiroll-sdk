@@ -41,7 +41,7 @@
     "@typescript-eslint/parser": "5.27.0",
     "eslint": "8.17.0",
     "eslint-plugin-jest": "26.5.3",
-    "ethers": "^5.6.8",
+    "ethers": "^5.7.0",
     "hardhat": "2.9.1",
     "jest": "28.1.0",
     "prettier": "2.6.2",
@@ -50,5 +50,8 @@
   },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "dependencies": {
+    "@weiroll/weiroll.js": "^0.3.0"
+  }
 }
