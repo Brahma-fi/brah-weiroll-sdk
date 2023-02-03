@@ -17,11 +17,22 @@ export class BrahVM {
     this.planner = new weiroll.Planner();
   }
 
-  compile(): {
+  compile(printPlan: boolean): {
     commands: string[];
     state: string[];
   } {
-    return this.planner.plan();
+    const {commands, state} = this.planner.plan();
+
+    if (printPlan) {
+      const encodedRes = ethers.utils.AbiCoder.prototype.encode(
+        ["bytes32[]", "bytes[]"],
+        [commands, state],
+      );
+
+      console.log(encodedRes);
+    }
+
+    return {commands, state};
   }
 
   assert(value: any): PlannerAdd {
