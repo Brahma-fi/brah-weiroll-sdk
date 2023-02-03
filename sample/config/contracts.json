@@ -18,5 +18,9 @@
   "Math": {
     "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
     "abi": "./abi/Math.json"
+  },
+  "Vault": {
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
+    "abi": "./abi/Vault.json"
   }
 }
