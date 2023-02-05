@@ -10,7 +10,7 @@ type ValidateReturn = {
 
 export const validateSetup = (): ValidateReturn => {
   const {contractsConfig, abiKey, useForge} = validateConfigFile();
-  validateContractsConfig(contractsConfig);
+  validateContractsConfig(contractsConfig, useForge);
 
   return {contractsConfig, abiKey, useForge};
 };
@@ -31,10 +31,10 @@ const validateConfigFile = (): ValidateReturn => {
 
   let useForge = false;
   if (config.useForge) {
-    if (config.useForge !== "true" && config.useForge !== "false")
-      throw new Error("[Incorrect config] useForge must be 'true' or 'false'");
+    if (typeof config.useForge !== "boolean")
+      throw new Error("[Incorrect config] useForge must be a boolean");
 
-    if (config.useForge === "true") useForge = true;
+    useForge = config.useForge;
   }
 
   return {
@@ -64,9 +64,10 @@ const validateContractsConfig = (
       );
 
     const innerKeys = Object.keys(contractsConfig[it]);
+    const keysLength = useForge ? 1 : 2;
 
     if (
-      innerKeys.length !== 2 ||
+      innerKeys.length !== keysLength ||
       !innerKeys.includes("address") ||
       (!innerKeys.includes("abi") && !useForge)
     )
