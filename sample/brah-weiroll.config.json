@@ -1,4 +1,5 @@
 {
   "abiKey": "abi",
-  "contracts": "./config/contracts.json"
+  "contracts": "./config/contracts.json",
+  "useForge": true
 }

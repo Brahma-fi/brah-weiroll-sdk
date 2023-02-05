@@ -1,26 +1,20 @@
 {
   "Assert": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Assert.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Coersion": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Coersion.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Comparison": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Comparison.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Ethereum": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Ethereum.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Math": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Math.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Vault": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF",
-    "abi": "./abi/Vault.json"
+    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   }
 }
