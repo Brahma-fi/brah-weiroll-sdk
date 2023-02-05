@@ -11,4 +11,5 @@ export default {
     math: "Math",
     ethereum: "Ethereum",
   },
+  forgeOut: (contractName: string) => `./out/${contractName}.sol`,
 };

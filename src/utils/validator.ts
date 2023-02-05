@@ -5,13 +5,14 @@ import Config from "./config";
 type ValidateReturn = {
   contractsConfig: ContractsConfig;
   abiKey?: string;
+  useForge: boolean;
 };
 
 export const validateSetup = (): ValidateReturn => {
-  const {contractsConfig, abiKey} = validateConfigFile();
+  const {contractsConfig, abiKey, useForge} = validateConfigFile();
   validateContractsConfig(contractsConfig);
 
-  return {contractsConfig, abiKey};
+  return {contractsConfig, abiKey, useForge};
 };
 
 const validateConfigFile = (): ValidateReturn => {
@@ -28,13 +29,25 @@ const validateConfigFile = (): ValidateReturn => {
   else if (typeof config.contracts !== "string")
     throw new Error("[Incorrect config] contracts path must be a string");
 
+  let useForge = false;
+  if (config.useForge) {
+    if (config.useForge !== "true" && config.useForge !== "false")
+      throw new Error("[Incorrect config] useForge must be 'true' or 'false'");
+
+    if (config.useForge === "true") useForge = true;
+  }
+
   return {
     contractsConfig: JSON.parse(readFileSync(config.contracts, "utf-8")),
     abiKey: config.abiKey,
+    useForge,
   };
 };
 
-const validateContractsConfig = (contractsConfig: ContractsConfig) => {
+const validateContractsConfig = (
+  contractsConfig: ContractsConfig,
+  useForge: boolean = false,
+) => {
   const configKeys = Object.keys(contractsConfig);
 
   Object.values(Config.commons).forEach((commonContract) => {
@@ -55,12 +68,12 @@ const validateContractsConfig = (contractsConfig: ContractsConfig) => {
     if (
       innerKeys.length !== 2 ||
       !innerKeys.includes("address") ||
-      !innerKeys.includes("abi")
+      (!innerKeys.includes("abi") && !useForge)
     )
       throw new Error("[Incorrect config] contract data not defined correctly");
 
     if (
-      typeof contractsConfig[it].abi !== "string" ||
+      (typeof contractsConfig[it].abi !== "string" && !useForge) ||
       typeof contractsConfig[it].address !== "string"
     )
       throw new Error("[Incorrect config] contract abi || address incorrect");

@@ -20,9 +20,14 @@ export const getWeirollContractByName = (
   name: string,
   isDelegateCalled: boolean = false,
 ): weiroll.Contract => {
-  const {contractsConfig, abiKey} = validateSetup();
+  const {contractsConfig, abiKey, useForge} = validateSetup();
 
-  const {address, abi} = getContractData(name, contractsConfig, abiKey);
+  const {address, abi} = getContractData(
+    name,
+    contractsConfig,
+    useForge,
+    abiKey,
+  );
 
   return getWeirollContract(address, abi, isDelegateCalled);
 };

@@ -9,6 +9,7 @@ export const getConfigFile = () =>
 export const getContractData = (
   name: string,
   contractsConfig: ContractsConfig,
+  useForge: boolean = false,
   abiKey?: string,
 ) => {
   if (!contractsConfig[name])
@@ -16,10 +17,12 @@ export const getContractData = (
 
   const contract = contractsConfig[name];
 
+  const abiPath = useForge ? Config.forgeOut(name) : contract.abi;
+
   return {
     address: contract.address,
     abi: !abiKey
-      ? JSON.parse(readFileSync(contract.abi, "utf-8"))
-      : JSON.parse(readFileSync(contract.abi, "utf-8"))[abiKey!],
+      ? JSON.parse(readFileSync(abiPath, "utf-8"))
+      : JSON.parse(readFileSync(abiPath, "utf-8"))[abiKey!],
   };
 };
