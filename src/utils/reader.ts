@@ -17,7 +17,7 @@ export const getContractData = (
 
   const contract = contractsConfig[name];
 
-  const abiPath = useForge ? Config.forgeOut(name) : contract.abi;
+  const abiPath = useForge ? Config.forgeOut(name) : contract.abi!;
 
   return {
     address: contract.address,
