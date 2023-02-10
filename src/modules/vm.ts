@@ -13,13 +13,15 @@ export type PlannerAdd = ReturnType<weiroll.Planner["add"]>;
 
 export class BrahVM {
   planner: weiroll.Planner;
+  helper: weiroll.Contract;
 
   constructor() {
     validateSetup();
     this.planner = new weiroll.Planner();
+    this.helper = getWeirollContractByName(Config.commons.helper);
   }
 
-  compile(printPlan: boolean): {
+  compile(printPlan: boolean = false): {
     commands: string[];
     state: string[];
   } {
@@ -38,52 +40,41 @@ export class BrahVM {
   }
 
   assert(value: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.assert).t(value),
-    );
+    return this.planner.add(this.helper.t(value));
   }
 
   and(a: any, b: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.comparison).and(a, b),
-    );
+    return this.planner.add(this.helper.and(a, b));
   }
 
   lt(a: any, b: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.comparison).lt(a, b),
-    );
+    return this.planner.add(this.helper.lt(a, b));
   }
 
   gt(a: any, b: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.comparison).gt(a, b),
-    );
+    return this.planner.add(this.helper.gt(a, b));
   }
 
   add(a: any, b: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.math).add(a, b),
-    );
+    return this.planner.add(this.helper.add(a, b));
   }
 
   balance(address: any): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.ethereum).balance(address),
-    );
+    return this.planner.add(this.helper.balance(address));
   }
 
   timestamp(): PlannerAdd {
-    return this.planner.add(
-      getWeirollContractByName(Config.commons.ethereum).timestamp(),
-    );
+    return this.planner.add(this.helper.timestamp());
   }
+  /// TODO:
+  //eqAddress
+  //self
+  //neAddress
+  //callerAddress
 
   transfer(address: any, amount: any): PlannerAdd {
     return this.planner.add(
-      getWeirollContractByName(Config.commons.ethereum)[
-        "transfer(address,uint256)"
-      ](address, amount),
+      this.helper["transfer(address,uint256)"](address, amount),
     );
   }
 
