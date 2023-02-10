@@ -55,6 +55,22 @@ export class BrahVM {
     return this.planner.add(this.helper.gt(a, b));
   }
 
+  eq(a: any, b: any): PlannerAdd {
+    return this.planner.add(this.helper.eq(a, b));
+  }
+
+  ne(a: any, b: any): PlannerAdd {
+    return this.planner.add(this.helper.ne(a, b));
+  }
+
+  eqAddress(a: any, b: any): PlannerAdd {
+    return this.planner.add(this.helper.eqAddress(a, b));
+  }
+
+  neAddress(a: any, b: any): PlannerAdd {
+    return this.planner.add(this.helper.neAddress(a, b));
+  }
+
   add(a: any, b: any): PlannerAdd {
     return this.planner.add(this.helper.add(a, b));
   }
@@ -66,11 +82,14 @@ export class BrahVM {
   timestamp(): PlannerAdd {
     return this.planner.add(this.helper.timestamp());
   }
-  /// TODO:
-  //eqAddress
-  //self
-  //neAddress
-  //callerAddress
+
+  self(): PlannerAdd {
+    return this.planner.add(this.helper.self());
+  }
+
+  callerAddress(): PlannerAdd {
+    return this.planner.add(this.helper.callerAddress());
+  }
 
   transfer(address: any, amount: any): PlannerAdd {
     return this.planner.add(
