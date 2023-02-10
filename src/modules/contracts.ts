@@ -8,7 +8,7 @@ import {validateSetup} from "../utils/validator";
 export const getWeirollContract = (
   address: string,
   abi: any,
-  type: ContractType,
+  type: ContractType = ContractType.CALL,
 ): weiroll.Contract => {
   const contract = new ethers.Contract(address, abi);
 
@@ -22,7 +22,7 @@ export const getWeirollContract = (
 
 export const getWeirollContractByName = (
   name: string,
-  type: ContractType,
+  type: ContractType = ContractType.CALL,
 ): weiroll.Contract => {
   const {contractsConfig, abiKey, useForge} = validateSetup();
 
@@ -39,5 +39,7 @@ export const getWeirollContractByName = (
 export const getMultipleWeirollContractsByName = (
   params: Array<IMultipleContracts>,
 ): weiroll.Contract[] => {
-  return params.map(({name, type}) => getWeirollContractByName(name, type));
+  return params.map(({name, type = ContractType.CALL}) =>
+    getWeirollContractByName(name, type),
+  );
 };

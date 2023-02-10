@@ -1,6 +1,6 @@
 import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
-import {IMultipleContracts} from "../types";
+import {ContractType, IMultipleContracts} from "../types";
 import {Config} from "../utils";
 import {validateSetup} from "../utils/validator";
 import {
@@ -91,11 +91,24 @@ export class BrahVM {
     return getWeirollContract(address, abi);
   }
 
-  contractByName(
-    name: string,
-    isDelegateCalled: boolean = false,
-  ): weiroll.Contract {
-    return getWeirollContractByName(name, isDelegateCalled);
+  contractByName(name: string): weiroll.Contract {
+    return getWeirollContractByName(name);
+  }
+
+  libraryByAddress(address: any, abi: any): weiroll.Contract {
+    return getWeirollContract(address, abi, ContractType.DELEGATE);
+  }
+
+  libraryByName(name: string): weiroll.Contract {
+    return getWeirollContractByName(name, ContractType.DELEGATE);
+  }
+
+  staticContractByAddress(address: any, abi: any): weiroll.Contract {
+    return getWeirollContract(address, abi, ContractType.STATIC);
+  }
+
+  staticContractByName(name: string): weiroll.Contract {
+    return getWeirollContractByName(name, ContractType.STATIC);
   }
 
   multipleContractsByName(
