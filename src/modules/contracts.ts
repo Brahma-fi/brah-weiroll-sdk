@@ -1,7 +1,6 @@
 import * as weiroll from "@weiroll/weiroll.js";
-import {CommandFlags} from "@weiroll/weiroll.js/dist/planner";
 import {ethers} from "ethers";
-import {ContractType, IMultipleContracts} from "../types";
+import {CommandFlags, ContractType, IMultipleContracts} from "../types";
 import {getContractData} from "../utils";
 import {validateSetup} from "../utils/validator";
 
