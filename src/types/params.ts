@@ -1,4 +1,10 @@
 export interface IMultipleContracts {
   name: string;
-  isDelegateCalled: boolean;
+  type: ContractType;
+}
+
+export enum ContractType {
+  DELEGATE,
+  CALL,
+  STATIC,
 }
