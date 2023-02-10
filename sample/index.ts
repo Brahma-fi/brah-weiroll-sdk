@@ -1,4 +1,4 @@
-import {BrahVM} from "brah-weiroll-sdk";
+import {BrahVM} from "../dist/index";
 
 const main = () => {
   const vm = new BrahVM();

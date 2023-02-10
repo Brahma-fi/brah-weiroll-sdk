@@ -1,24 +1,27 @@
 import * as weiroll from "@weiroll/weiroll.js";
 import {ethers} from "ethers";
-import {IMultipleContracts} from "../types";
+import {CommandFlags, ContractType, IMultipleContracts} from "../types";
 import {getContractData} from "../utils";
 import {validateSetup} from "../utils/validator";
 
 export const getWeirollContract = (
   address: string,
   abi: any,
-  isDelegateCalled: boolean = false,
+  type: ContractType = ContractType.CALL,
 ): weiroll.Contract => {
   const contract = new ethers.Contract(address, abi);
 
-  if (isDelegateCalled) return weiroll.Contract.createLibrary(contract);
+  if (type === ContractType.DELEGATE)
+    return weiroll.Contract.createLibrary(contract);
+  if (type === ContractType.STATIC)
+    return weiroll.Contract.createContract(contract, CommandFlags.STATICCALL);
 
   return weiroll.Contract.createContract(contract);
 };
 
 export const getWeirollContractByName = (
   name: string,
-  isDelegateCalled: boolean = false,
+  type: ContractType = ContractType.CALL,
 ): weiroll.Contract => {
   const {contractsConfig, abiKey, useForge} = validateSetup();
 
@@ -29,13 +32,13 @@ export const getWeirollContractByName = (
     abiKey,
   );
 
-  return getWeirollContract(address, abi, isDelegateCalled);
+  return getWeirollContract(address, abi, type);
 };
 
 export const getMultipleWeirollContractsByName = (
   params: Array<IMultipleContracts>,
 ): weiroll.Contract[] => {
-  return params.map(({name, isDelegateCalled}) =>
-    getWeirollContractByName(name, isDelegateCalled),
+  return params.map(({name, type = ContractType.CALL}) =>
+    getWeirollContractByName(name, type),
   );
 };

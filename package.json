@@ -1,6 +1,6 @@
 {
   "name": "brah-weiroll-sdk",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Brahma's Weiroll Development SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

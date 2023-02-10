@@ -1,17 +1,5 @@
 {
-  "Assert": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
-  },
-  "Coersion": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
-  },
-  "Comparison": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
-  },
-  "Ethereum": {
-    "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
-  },
-  "Math": {
+  "Helper": {
     "address": "0x2D3B10fc395B109DC32B71D14CdD523E471F14EF"
   },
   "Vault": {

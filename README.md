@@ -46,6 +46,8 @@ Setup primarily requires 2 config files that are defined to comply with their in
    }
    ```
 
+   - **NOTE:** This must contain address and abi to a 'Helper.sol' contract
+
    [sample](./sample/config/contracts.json)
 
 ## Usage

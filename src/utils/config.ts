@@ -5,11 +5,7 @@ export default {
     abiKey: "abiKey",
   },
   commons: {
-    assert: "Assert",
-    coersion: "Coersion",
-    comparison: "Comparison",
-    math: "Math",
-    ethereum: "Ethereum",
+    helper: "Helper",
   },
   forgeOut: (contractName: string) =>
     `./out/${contractName}.sol/${contractName}.json`,
