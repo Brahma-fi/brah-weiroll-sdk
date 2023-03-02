@@ -1,6 +1,7 @@
 # Brahma Weiroll SDK
 
-An SDK to work with weiroll scripting to generate bytecode.
+An SDK to work with weiroll scripting to generate bytecode for automated workflows.
+The repo is built by taking inspiration from experimental version of optimisim drippie mentioned [here](https://www.youtube.com/watch?v=Y7XvDL9-Co0) at [repo](https://github.com/ethereum-optimism/optimism/tree/sc/drippie-v2) by [KelvinFitcher](https://github.com/smartcontracts)
 
 ## Installation
 
